@@ -7,10 +7,7 @@ const {
 } = require("./src/stripe/stripe.controller");
 
 const app = express();
-
 const port = 3000;
-
-app.use(bodyparser.json());
 
 app.get("/", stripeHomePage);
 app.get("/connected", connectedToStripe);
