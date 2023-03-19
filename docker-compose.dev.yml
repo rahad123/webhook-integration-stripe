@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  webhook-integration:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: 
+      - ./.env
+    volumes:
+      - ./src:/usr/src/app/src
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
+    command: npm run dev
+  mongo:  
+    hostname: mongo
+    image: mongo:4.4-bionic
+    expose: 
+      - 27017
+    ports: 
+      - 27017:27017
