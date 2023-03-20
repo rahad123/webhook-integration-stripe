@@ -1,6 +1,8 @@
 const mongooses = require("mongoose");
 const { Schema } = mongooses;
 const mongoose = require("../db/db");
+const { role } = require("./user.enum");
+const { SUPER_USER } = role;
 
 const userSchema = new Schema(
   {
@@ -15,6 +17,11 @@ const userSchema = new Schema(
     password: {
       type: String,
       trim: true,
+    },
+    role: {
+      type: String,
+      trim: true,
+      default: SUPER_USER,
     },
   },
   {

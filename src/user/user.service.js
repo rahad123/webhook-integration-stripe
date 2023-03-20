@@ -1,13 +1,24 @@
 const User = require("./user.model.js");
 module.exports = {
   getUsers: async () => {
-    await totalUser();
     return User.find({});
   },
-  getSingleUser: async ({ id: _id }) => {
-    return User.findById({ _id });
+
+  getSingleUser: async (id) => {
+    return User.findById(id);
   },
+
   createUser: async (user) => {
     return User.create(user);
+  },
+
+  updateUser: async (id, ...args) => {
+    console.log("id", id);
+    console.log("args", args);
+    return User.findByIdAndUpdate(id, { args });
+  },
+
+  deleteUser: async (id) => {
+    return User.findOneAndDelete({ id });
   },
 };

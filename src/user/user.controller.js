@@ -1,23 +1,72 @@
-const { createUser } = require("./user.service");
+const {
+  getUsers,
+  getSingleUser,
+  createUser,
+  updateUser,
+  deleteUser,
+} = require("./user.service");
 
 module.exports = {
-  createUser: async (req, res) => {
-    const User = req.body;
-    const user = await createUser(User);
-    res.send(user);
-  },
-  getUsers: async (_, args, ctx) => {
+  getUsers: async (req, res) => {
     try {
+      const users = await getUsers();
+      return res.json({
+        data: users,
+      });
     } catch (err) {
-      logger.error(err);
-      return errors.withApolloError("INTERNAL_SERVER_ERROR");
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
-  getSingleUser: async (_, args, ctx, info) => {
+
+  getSingleUser: async (req, res) => {
     try {
+      const { id } = req.params;
+      const user = await getSingleUser(id);
+      return res.json({
+        data: user,
+      });
     } catch (err) {
-      logger.error(err);
-      return errors.withApolloError("INTERNAL_SERVER_ERROR");
+      console.log(err);
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
+    }
+  },
+
+  createUser: async (req, res) => {
+    try {
+      const User = req.body;
+      const user = await createUser(User);
+      return res.json({
+        data: user,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
+    }
+  },
+
+  updateUser: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await updateUser(id, req.body);
+      return res.json({
+        data: user,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
+    }
+  },
+
+  deleteUser: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await deleteUser(id);
+      return res.json({
+        data: true,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 };
