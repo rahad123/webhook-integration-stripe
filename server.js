@@ -7,7 +7,7 @@ const {
   connectedToStripe,
 } = require("./src/stripe/stripe.controller");
 
-const { createUser } = require("./src/user/user.controller");
+const { createUser, getUsers, getSingleUser, updateUser, deleteUser } = require("./src/user/user.controller");
 
 const app = express();
 app.use(express.json());
@@ -19,9 +19,12 @@ app.get("/connected", connectedToStripe);
 
 // User
 app.post("/user", createUser);
-app.get("/users", (req, res) => {
-  res.send("success");
-});
+app.get("/user", getUsers);
+app.get("/user/:id", getSingleUser);
+app.put("/user/:id", updateUser);
+app.delete("/user/:id", deleteUser);
+
+
 
 app.listen(port, function (error) {
   if (error) throw error;
