@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
-const objectID = Schema.ObjectId;
+const mongooses = require("mongoose");
+const { Schema } = mongooses;
+const mongoose = require("../db/db");
 
 const siteSchema = new Schema(
   {
