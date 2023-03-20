@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 
 const {
@@ -17,7 +19,9 @@ app.get("/connected", connectedToStripe);
 
 // User
 app.post("/user", createUser);
-// app.get("/users", getUsers);
+app.get("/users", (req, res) => {
+  res.send("success");
+});
 
 app.listen(port, function (error) {
   if (error) throw error;
