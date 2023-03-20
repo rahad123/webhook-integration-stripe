@@ -1,36 +1,26 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
-const { ObjectId } = Schema;
+const mongooses = require("mongoose");
+const { Schema } = mongooses;
+const mongoose = require("../db/db");
 
-const userSchema = new Schema({
-  siteId: {
-    type: ObjectId,
-    trim: true,
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      trim: true,
+    },
+    email: {
+      type: String,
+      trim: true,
+    },
+    password: {
+      type: String,
+      trim: true,
+    },
   },
-  email: {
-    type: String,
-    trim: true,
-  },
-  name: {
-    type: String,
-    trim: true,
-  },
-  role: {
-    type: String,
-    trim: true,
-    // enum: Object.values(role),
-  },
-  avatar: {
-    type: String,
-    trim: true,
-  },
-  country: {
-    type: String,
-    trim: true,
-  },
-  password: {
-    type: String,
-    trim: true,
-  },
-});
-module.exports = mongoose.model("User", userSchema);
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+const User = mongoose.model("User", userSchema);
+module.exports = User;
