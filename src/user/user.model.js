@@ -29,5 +29,5 @@ const userSchema = new Schema(
     toObject: { virtuals: true },
   }
 );
-const User = mongoose.model("User", userSchema);
+const User = mongooses.model("User", userSchema);
 module.exports = User;
