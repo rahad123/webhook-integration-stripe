@@ -1,9 +1,15 @@
 const https = require("https");
 const EventEmitter = require("events");
 const webhookEmitter = new EventEmitter();
+const {
+  events: { CONNECT_STRIPE },
+} = require("./event.enum");
+const {
+  webhook: { webhookUrl },
+} = require("../config/config");
 
 // Set up a listener for a custom event
-webhookEmitter.on("customEvent", (payload) => {
+webhookEmitter.on("CONNECT_STRIPE", (payload) => {
   // Make a POST request to the webhook URL with the payload
   const options = {
     method: "POST",
@@ -12,7 +18,7 @@ webhookEmitter.on("customEvent", (payload) => {
     },
   };
 
-  const req = https.request(webhookURL, options, (res) => {
+  const req = https.request(webhookUrl, options, (res) => {
     console.log(`statusCode: ${res.statusCode}`);
   });
 
@@ -26,7 +32,8 @@ webhookEmitter.on("customEvent", (payload) => {
 
 // Emit the custom event with a payload
 module.exports = {
-  eventFire: async((payload) => {
-    webhookEmitter.emit("customEvent", payload);
-  }),
+  eventFire: (payload) => {
+    console.log("payload", payload);
+    webhookEmitter.emit("CONNECT_STRIPE", payload);
+  },
 };
