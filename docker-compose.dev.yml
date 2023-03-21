@@ -1,22 +1,29 @@
-version: '3.1'
+version: "3.4"
 services:
   webhook-integration:
     build:
       context: .
-      dockerfile: Dockerfile
-    env_file: 
+      dockerfile: Dockerfile.dev
+    env_file:
       - ./.env
     volumes:
-      - ./src:/usr/src/app/src
+      - ./:/usr/src/app
     ports:
       - 3000:3000
+    restart: unless-stopped
     depends_on:
-      - mongo
+      - webhook-mongo
     command: npm run dev
-  mongo:  
-    hostname: mongo
-    image: mongo:4.4-bionic
-    expose: 
-      - 27017
-    ports: 
-      - 27017:27017
+
+  webhook-mongo:
+    image: mongo
+    restart: always
+    container_name: webhook-mongo
+    volumes:
+      - ./.docker/db_data:/var/lib/mongo/data
+      - ./.docker/data:/dump
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
