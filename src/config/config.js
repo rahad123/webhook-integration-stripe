@@ -16,4 +16,7 @@ module.exports = {
     secretKey: process.env.STRIPE_SECRET_KEY, // Secret KEY: https://dashboard.stripe.com/account/apikeys
     redirectUri: process.env.STRIPE_REDIRECT_URI, // Redirect Uri https://dashboard.stripe.com/account/applications/settings
   },
+  webhook: {
+    webhookUrl: process.env.WEBHOOK_URL,
+  },
 };
