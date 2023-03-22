@@ -8,20 +8,19 @@ const {
 } = require("./user.service");
 
 module.exports = {
-  getUsers: async (_, args, ctx) => {
+  getSites: async (_, args, ctx) => {
     try {
       const users = await getUsers();
       return res.json({
         data: users,
       });
     } catch (err) {
-      return res.status(INTERNAL_SERVER_ERROR.code).json({
-        message: INTERNAL_SERVER_ERROR.message,
-      });
+      console.log(err);
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 
-  getSingleUser: async (_, args, ctx, info) => {
+  getSingleSite: async (_, args, ctx, info) => {
     try {
       const { userId } = req.params;
       const user = await getSingleUser(userId);
@@ -29,13 +28,12 @@ module.exports = {
         data: user,
       });
     } catch (err) {
-      return res.status(INTERNAL_SERVER_ERROR.code).json({
-        message: INTERNAL_SERVER_ERROR.message,
-      });
+      console.log(err);
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 
-  createUser: async (req, res) => {
+  createSite: async (req, res) => {
     try {
       const User = req.body;
       const user = await createUser(User);
@@ -43,13 +41,12 @@ module.exports = {
         data: user,
       });
     } catch (err) {
-      return res.status(INTERNAL_SERVER_ERROR.code).json({
-        message: INTERNAL_SERVER_ERROR.message,
-      });
+      console.log(err);
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 
-  updateUser: async (req, res) => {
+  updateSite: async (req, res) => {
     try {
       const { userId } = req.params;
       const user = await updateUser(userId, req.body);
@@ -57,13 +54,12 @@ module.exports = {
         data: user,
       });
     } catch (err) {
-      return res.status(INTERNAL_SERVER_ERROR.code).json({
-        message: INTERNAL_SERVER_ERROR.message,
-      });
+      console.log(err);
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 
-  deleteUser: async (req, res) => {
+  deleteSite: async (req, res) => {
     try {
       const { userId } = req.params;
       const user = await deleteUser(userId);
@@ -71,9 +67,8 @@ module.exports = {
         data: user,
       });
     } catch (err) {
-      return res.status(INTERNAL_SERVER_ERROR.code).json({
-        message: INTERNAL_SERVER_ERROR.message,
-      });
+      console.log(err);
+      return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 };
