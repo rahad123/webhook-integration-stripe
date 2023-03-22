@@ -1,11 +1,13 @@
-
+const {
+  addMember
+} = require("./members.service");
 
 module.exports = {
   addMember: async (req, res) => {
     try {
-      const users = await getUsers();
+      const member = await addMember();
       return res.json({
-        data: users,
+        data: member,
       });
     } catch (err) {
       console.log(err);
