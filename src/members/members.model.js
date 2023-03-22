@@ -20,12 +20,15 @@ const memberSchema = new Schema(
       type: String,
       trim: true,
     },
-    role: SUBSCRIBER,
+    role: {
+      type: String,
+      default: SUBSCRIBER
+    },
   },
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );
-const Member = mongooses.model("User", memberSchema);
+const Member = mongooses.model("Member", memberSchema);
 module.exports = Member;
