@@ -13,8 +13,6 @@ module.exports = {
   },
 
   updateUser: async (id, ...args) => {
-    console.log("id", id);
-    console.log("args", args);
     return User.findByIdAndUpdate(id, { args });
   },
 

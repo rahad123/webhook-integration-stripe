@@ -61,6 +61,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const user = await deleteUser(id);
+      if (!user) return false;
       return res.json({
         data: true,
       });
