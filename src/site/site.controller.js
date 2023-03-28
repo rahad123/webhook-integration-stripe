@@ -1,16 +1,16 @@
 const res = require("express/lib/response");
 const {
-  getUsers,
-  getSingleUser,
-  createUser,
-  updateUser,
-  deleteUser,
-} = require("./user.service");
+  getSites,
+  getSingleSite,
+  createSite,
+  updateSite,
+  deleteSite,
+} = require("./site.service");
 
 module.exports = {
   getSites: async (_, args, ctx) => {
     try {
-      const users = await getUsers();
+      const users = await getSites();
       return res.json({
         data: users,
       });
@@ -23,7 +23,7 @@ module.exports = {
   getSingleSite: async (_, args, ctx, info) => {
     try {
       const { userId } = req.params;
-      const user = await getSingleUser(userId);
+      const user = await getSingleSite(userId);
       return res.json({
         data: user,
       });
@@ -36,7 +36,7 @@ module.exports = {
   createSite: async (req, res) => {
     try {
       const User = req.body;
-      const user = await createUser(User);
+      const user = await createSite(User);
       return res.json({
         data: user,
       });
@@ -49,7 +49,7 @@ module.exports = {
   updateSite: async (req, res) => {
     try {
       const { userId } = req.params;
-      const user = await updateUser(userId, req.body);
+      const user = await updateSite(userId, req.body);
       return res.json({
         data: user,
       });
@@ -62,7 +62,7 @@ module.exports = {
   deleteSite: async (req, res) => {
     try {
       const { userId } = req.params;
-      const user = await deleteUser(userId);
+      const user = await deleteSite(userId);
       return res.json({
         data: user,
       });
