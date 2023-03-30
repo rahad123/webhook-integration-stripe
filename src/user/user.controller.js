@@ -5,6 +5,7 @@ const {
   updateUser,
   deleteUser,
 } = require("./user.service");
+const logger = require("../utils/logger");
 
 module.exports = {
   getUsers: async (req, res) => {
@@ -14,6 +15,7 @@ module.exports = {
         data: users,
       });
     } catch (err) {
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
@@ -26,7 +28,7 @@ module.exports = {
         data: user,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
@@ -39,7 +41,7 @@ module.exports = {
         data: user,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
@@ -52,7 +54,7 @@ module.exports = {
         data: user,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
@@ -66,7 +68,7 @@ module.exports = {
         data: true,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },

@@ -12,8 +12,8 @@ module.exports = {
     return User.create(user);
   },
 
-  updateUser: async (id, ...args) => {
-    return User.findByIdAndUpdate(id, { args });
+  updateUser: async (id, args) => {
+    return User.findOneAndUpdate({ _id: id }, args, { new: true });
   },
 
   deleteUser: async (id) => {
