@@ -6,68 +6,69 @@ const {
   updateSite,
   deleteSite,
 } = require("./site.service");
+const logger = require("../utils/logger");
 
 module.exports = {
-  getSites: async (_, args, ctx) => {
+  getSites: async (req, res) => {
     try {
-      const users = await getSites();
+      const sites = await getSites();
       return res.json({
-        data: users,
+        data: sites,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 
-  getSingleSite: async (_, args, ctx, info) => {
+  getSingleSite: async (req, res) => {
     try {
-      const { userId } = req.params;
-      const user = await getSingleSite(userId);
+      const { siteId } = req.params;
+      const site = await getSingleSite(siteId);
       return res.json({
-        data: user,
+        data: site,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 
   createSite: async (req, res) => {
     try {
-      const User = req.body;
-      const user = await createSite(User);
+      const siteInput = req.body;
+      const site = await createSite(siteInput);
       return res.json({
-        data: user,
+        data: site,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 
   updateSite: async (req, res) => {
     try {
-      const { userId } = req.params;
-      const user = await updateSite(userId, req.body);
+      const { id: siteId } = req.params;
+      const site = await updateSite(siteId, req.body);
       return res.json({
-        data: user,
+        data: site,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },
 
   deleteSite: async (req, res) => {
     try {
-      const { userId } = req.params;
-      const user = await deleteSite(userId);
+      const { id: siteId } = req.params;
+      const site = await deleteSite(siteId);
       return res.json({
-        data: user,
+        data: site,
       });
     } catch (err) {
-      console.log(err);
+      logger.error(err);
       return res.status(500).send("INTERNAL_SERVER_ERROR");
     }
   },

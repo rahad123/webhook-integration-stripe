@@ -8,15 +8,15 @@ module.exports = {
     return Site.findById(id);
   },
 
-  createSite: async (Site) => {
-    return Site.create(Site);
+  createSite: async (site) => {
+    return Site.create(site);
   },
 
-  updateSite: async (id, ...args) => {
-    return Site.findByIdAndUpdate(id, { args });
+  updateSite: async (id, args) => {
+    return Site.findOneAndUpdate({ _id: id }, args, { new: true });
   },
 
   deleteSite: async (id) => {
-    return Site.findOneAndDelete({ id });
+    return Site.findOneAndDelete({ _id: id });
   },
 };

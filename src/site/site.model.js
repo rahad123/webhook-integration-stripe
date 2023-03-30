@@ -1,6 +1,10 @@
 const mongooses = require("mongoose");
 const { Schema } = mongooses;
 const mongoose = require("../db/db");
+const {
+  statuses,
+  status: { PUBLISHED },
+} = require("./site.enum");
 
 const siteSchema = new Schema(
   {
@@ -14,9 +18,12 @@ const siteSchema = new Schema(
       index: true,
       required: true,
     },
-    thumbnail: {
+    status: {
       type: String,
+      required: true,
       trim: true,
+      enum: statuses,
+      default: PUBLISHED,
     },
     user: { type: Schema.Types.ObjectId, ref: "User", index: true },
   },
