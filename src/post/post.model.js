@@ -24,6 +24,10 @@ const postSchema = new Schema(
     content: {
       type: String,
     },
+    draftContent: {
+      type: String,
+      trim: true,
+    },
     thumbnailImage: {
       type: String,
       trim: true,
@@ -46,6 +50,11 @@ const postSchema = new Schema(
       enum: Object.values(visibilityType),
       default: PUBLIC,
     },
+    authorId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      trim: true,
+    },
   },
 
   {
@@ -55,5 +64,6 @@ const postSchema = new Schema(
     toObject: { virtuals: true },
   }
 );
+postSchema.index({ siteId: 1, slug: 1 }, { unique: true });
 
 module.exports = mongoose.model("Post", postSchema);

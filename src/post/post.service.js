@@ -8,12 +8,12 @@ module.exports = {
     return Post.findById(id);
   },
 
-  createPost: async (Post) => {
-    return Post.create(Post);
+  createPost: async (post) => {
+    return Post.create(post);
   },
 
-  updatePost: async (id, ...args) => {
-    return Post.findByIdAndUpdate(id, { args });
+  updatePost: async (id, args) => {
+    return Post.findOneAndUpdate({ _id: id }, args, { new: true });
   },
 
   deletePost: async (id) => {
