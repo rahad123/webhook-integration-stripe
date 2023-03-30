@@ -28,6 +28,7 @@
     "mongoose": "^7.0.1",
     "nanoid": "^4.0.1",
     "node-event-trigger": "^0.3.0",
-    "stripe": "^11.14.0"
+    "stripe": "^11.14.0",
+    "winston": "^3.8.2"
   }
 }
