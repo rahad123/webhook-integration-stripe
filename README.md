@@ -7,7 +7,7 @@
  - Node.js ([Download](https://nodejs.org/en))
  - NPM (Will be download with Node.js)
 
- #### There are one part of this project.
+ #### There is one part of this project.
   - Backend - Nodejs + MongoDB ( http://localhost:3000 )
 
 ## Installation
