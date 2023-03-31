@@ -4,6 +4,7 @@ const {
   createPost,
   updatePost,
   deletePost,
+  isSlugExists,
 } = require("./post.service");
 const logger = require("../utils/logger");
 const slugify = require("../utils/slugify");
@@ -48,11 +49,8 @@ module.exports = {
         delete postInput.content;
       }
 
-      // const exists = await isSlugExists(
-      //   createPostInput.siteId,
-      //   createPostInput.slug
-      // );
-      // if (exists) console.log("SLUG_IS_NOT_UNIQUE");
+      const exists = await isSlugExists(postInput.siteId, postInput.slug);
+      if (exists) return res.status(422).send("SLUG_IS_NOT_UNIQUE");
 
       const post = await createPost(postInput);
       return res.json({

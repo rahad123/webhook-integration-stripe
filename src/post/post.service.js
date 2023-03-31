@@ -19,4 +19,7 @@ module.exports = {
   deletePost: async (id) => {
     return Post.findOneAndDelete({ id });
   },
+  isSlugExists: async (siteId, slug, id = null) => {
+    return Post.exists({ siteId: siteId, slug: slug, _id: { $ne: id } });
+  },
 };
