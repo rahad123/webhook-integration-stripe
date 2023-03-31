@@ -1,3 +1,31 @@
 # Webhook Integration with Stripe
-#### Basically, this app is designed for a webhook event that will be triggered when using Stripe(Payment Method). When an authenticated user creates a site and creates a blog post then they can add members as subscribers. subscribers can purchase the premium posts. Subscriber can be free or paid. Members can pay using Stripe. When a member will connect with Stripe, at the same time a webhook event will be triggered. Member's information will send using a webhook event.
+#### This app is designed for a webhook event that will be triggered when using Stripe(Payment Method). Basically, It's like a CMS, where user can create their site and make their post. In here, I used Node.js and MongoDB. I tried to follow TDD approach to built the apis. 
+
+## Requirements
+ - Docker ([Documentation](https://www.docker.com/get-started/))
+ - Docker Compose
+ - Node.js ([Download](https://nodejs.org/en))
+ - NPM (Will be download with Node.js)
+
+ #### There are two part of this project.
+  - Backend - Nodejs + MongoDB ( http://localhost:3000 )
+
+## Installation
+ - Copy .env.example to .env
+  ```
+   cp .env.example .env
+  ``` 
+
+## Run Docker
+```
+npm run dev:docker
+```
+
+## APIs
+I have attached all APIs here as well. For more details abouts APIs, visit this http://localhost:3000/api/v1/docs/ to see api documentation.
+## Tests
+- For testcase you can run
+```
+npm run test:docker
+```
 

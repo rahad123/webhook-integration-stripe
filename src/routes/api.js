@@ -6,8 +6,6 @@ const stripeRoutes = require("./stripe");
 const siteRoutes = require("./site");
 const postRoutes = require("./post");
 
-// const postRoutes = require("./post");
-
 module.exports = rootRouter.use(
   userRoutes,
   stripeRoutes,
