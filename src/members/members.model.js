@@ -22,7 +22,16 @@ const memberSchema = new Schema(
     },
     role: {
       type: String,
-      default: SUBSCRIBER
+      default: SUBSCRIBER,
+    },
+    postId: {
+      type: Schema.Types.ObjectId,
+      trim: true,
+    },
+    subscription: {
+      type: String,
+      trim: true,
+      default: "FREE",
     },
   },
   {

@@ -1,7 +1,10 @@
 const Member = require("./members.model");
 
 module.exports = {
-  createUser: async (member) => {
+  inviteMember: async (member) => {
     return Member.create(member);
+  },
+  getMembers: async () => {
+    return Member.find({});
   },
 };
