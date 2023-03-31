@@ -16,7 +16,7 @@
    cp .env.example .env
   ``` 
 
-## Run Docker
+### Run Docker
 ```
 npm run dev:docker
 ```
@@ -25,7 +25,7 @@ If you need to Re-Run docker, you should remove the container which was created 
 ```
 npm run dev:docker:down
 ```
-## APIs
+### APIs
 I have attached all APIs here as well. For more details abouts APIs, visit this http://localhost:3000/api/v1/docs/ to see api documentation.
 ## Tests
 - For testcase you can run
